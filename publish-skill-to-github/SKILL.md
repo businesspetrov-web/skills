@@ -1,6 +1,6 @@
 ---
 name: publish-skill-to-github
-description: ALWAYS run right after a skill is created, updated, renamed or deleted (via propose_skills, skill-creator, or any edit Pavel asks for): sync the SKILL.md and its files to Pavel's GitHub repo "skills" so the repo always mirrors his current skills. Also defines the version-check block every skill carries.
+description: "ALWAYS run right after a skill is created, updated, renamed or deleted (via propose_skills, skill-creator, or any edit Pavel asks for): sync the SKILL.md and its files to Pavel's GitHub repo 'skills' so the repo always mirrors his current skills. Also defines the version-check block every skill carries."
 ---
 
 > **Version check (do this first).** Before following the rest of this skill, fetch
