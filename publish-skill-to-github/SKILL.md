@@ -1,11 +1,11 @@
 ---
 name: publish-skill-to-github
-description: ALWAYS run right after a skill is created or updated (via propose_skills or skill-creator): push the SKILL.md and its files to Pavel's GitHub repo "skills" so every skill is backed up and shareable.
+description: ALWAYS run right after a skill is created, updated, renamed or deleted (via propose_skills, skill-creator, or any edit Pavel asks for): sync the SKILL.md and its files to Pavel's GitHub repo "skills" so the repo always mirrors his current skills.
 ---
 
 # Publish skill to GitHub
 
-Every time you create a new skill or update an existing one for Pavel (whether through `propose_skills`, the `skill-creator` skill, or any other route), also commit it to his GitHub repository **`skills`** (https://github.com/businesspetrov-web/skills). This is a standing instruction — do it without being asked, and mention in one sentence that you did.
+Every time you create a new skill or change an existing one for Pavel (whether through `propose_skills`, the `skill-creator` skill, or any other route), also commit it to his GitHub repository **`skills`** (https://github.com/businesspetrov-web/skills). This is a standing instruction — do it without being asked, and mention in one sentence that you did. The repo must always mirror the skills Pavel actually has: a change to a skill is not finished until the repo reflects it.
 
 ## Repository layout
 
@@ -28,6 +28,19 @@ Important: the Cowork cloud workspace's proxy blocks both the GitHub REST API an
 3. **Fallback**: if neither route works, hand Pavel the files with SendUserFile and tell him to drop them into the repo.
 
 Whatever the route, the SKILL.md pushed must be byte-for-byte the content passed to `propose_skills` (frontmatter plus body). Confirm to Pavel with the path `skills/<skill-name>/SKILL.md`.
+
+## Updates, renames and deletions
+
+An **update** is any change to an existing skill: a `propose_skills` call with `kind: "improvement"`, a `skill-creator` edit, a description tweak, or Pavel simply saying "change/fix/improve skill X". For every update:
+
+1. Overwrite `<skill-name>/SKILL.md` in the repo with the complete new content (never a partial patch) — via the local clone, or via `https://github.com/businesspetrov-web/skills/edit/main/<skill-name>/SKILL.md` in Chrome (select all, then paste the new content).
+2. Re-sync companion files: add new ones, overwrite changed ones, and remove any the skill no longer ships with.
+3. Refresh the skill's row in `README.md` if its name or description changed.
+4. Commit as `Update skill: <skill-name>` with one line saying what changed.
+
+A **rename** moves the folder (`<old-name>/` → `<new-name>/`) and updates the README row. A **deletion** (Pavel removes or says to remove a skill) removes its folder and README row, committed as `Remove skill: <skill-name>`.
+
+Before committing, compare with what is already in the repo: if the content is identical, say so and skip the commit rather than creating a no-op one.
 
 ## Notes
 
